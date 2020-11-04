@@ -57,7 +57,7 @@ class App extends React.Component {
           <h3>Find your favorite artist's most danceable track</h3>
           <form id='artist'>
           <input type='text' id='artistInput' onChange={this.onChange}></input>
-          <button form='artist' onClick={this.search}></button>
+          <button form='artist' onClick={this.search}>Let's Dance</button>
           </form>
         </div>
         <button>Add to playlist?</button>
