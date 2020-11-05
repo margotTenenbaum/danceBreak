@@ -13,9 +13,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.post('/artist', (req, res) => {
-  console.log('artist received in server: ', req.body.artist);
   helper.searchSpotify(req.body.artist, (results) => {
-    console.log('results: ', results);
     res.send(results);
   })
 });
@@ -28,10 +26,15 @@ app.post('/addSong', (req, res) => {
 
 app.get('/getPlaylist', (req, res) => {
   db.getPlaylist((playlist) => {
-    console.log('got playlist: ', playlist);
     res.send(playlist);
-  })
+  });
 });
+
+app.post('/getSong', (req, res) => {
+  db.songRequest(req.body.artistName, (song) => {
+    res.send(song);
+  })
+})
 
 app.listen(PORT, function() {
   console.log(`listening on port ${PORT}!`);

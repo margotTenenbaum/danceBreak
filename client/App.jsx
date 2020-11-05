@@ -20,6 +20,7 @@ class App extends React.Component {
     this.onChange = this.onChange.bind(this);
     this.search = this.search.bind(this);
     this.addToPlaylist = this.addToPlaylist.bind(this);
+    this.songClick = this.songClick.bind(this);
   }
 
   componentDidMount() {
@@ -87,6 +88,27 @@ class App extends React.Component {
     })
   }
 
+  songClick(e) {
+    e.preventDefault();
+    axios({
+      method: 'post',
+      url: '/getSong',
+      data: {
+        artistName: e.target.id
+      }
+    })
+    .then(res => {
+      this.setState({
+        artist: res.data.artistName,
+        songID: res.data.trackID,
+        songTitle: res.data.trackName
+      })
+    })
+    .catch(err => {
+      console.log('err in axios getSong: ', err);
+    })
+  }
+
   render() {
     return (
       <div>
@@ -103,7 +125,7 @@ class App extends React.Component {
           <Player songID={this.state.songID}/>
         </div>
         <div>
-          <Playlist playlist={this.state.playlist} />
+          <Playlist playlist={this.state.playlist} songClick={this.songClick}/>
         </div>
       </div>
     )

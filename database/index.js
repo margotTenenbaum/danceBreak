@@ -19,31 +19,21 @@ const trackSchema = mongoose.Schema({
 
 const Track = mongoose.model('Track', trackSchema);
 
-var lastSavedId;
-
-const songRequest = (cb) => {
-  cb(lastSavedId);
-}
-
 const saveTrack = (track, next) => {
   const newTrack = new Track({
     artistName: track.artistName,
     trackName: track.trackName,
-    trackID: track.id
+    trackID: track.trackID
   })
-
-  lastSavedId = track.id;
 
   newTrack.save((err, doc) => {
     if (err) {
       console.log('error saving track to db: ', err);
     } else {
-      console.log('track saved to db');
       next();
     }
   })
 };
-
 
 const getPlaylist = function(next) {
   Track.find({}, function(err, items) {
@@ -55,7 +45,17 @@ const getPlaylist = function(next) {
   });
 };
 
+const songRequest = (artist, next) => {
+  Track.find({artistName: artist}, (err, song) => {
+    if (err) {
+      console.log('error getting song from db: ', err);
+    } else {
+      next(song[0]);
+    }
+  })
+}
+
 module.exports.getPlaylist = getPlaylist;
 module.exports.saveTrack = saveTrack;
-module.exports.requestedSong = lastSavedId;
+//odule.exports.requestedSong = lastSavedId;
 module.exports.songRequest = songRequest;
