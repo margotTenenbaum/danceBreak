@@ -1,5 +1,4 @@
 const axios = require('axios');
-//const db = require('../database-mongo/index.js');
 const btoa = require('btoa');
 const path = require('path');
 require('dotenv').config({
@@ -9,11 +8,9 @@ require('dotenv').config({
 var token;
 var artistID;
 var artistName;
-
 var songStorage = {
   //id: {artistName, artistID, trackName}
 }
-
 
 var searchSpotify = (artist, cb) => {
   const string = process.env.CLIENTID + ':' + process.env.SECRET;
@@ -65,12 +62,10 @@ var searchSpotify = (artist, cb) => {
       return axios(optionsTopTracks)
     })
     .then(data => {
-      // var track = data.data.tracks[0].id;
-      // var trackName = data.data.tracks[0].name;
       var tracks = data.data.tracks;
 
       var top5Tracks = '';
-      //push 5 track ids to an array
+
       for (var i = 0; i < 5; i++) {
         top5Tracks+= tracks[i].id;
 
@@ -78,14 +73,12 @@ var searchSpotify = (artist, cb) => {
           top5Tracks+= ',';
         }
 
-        //create track obj
         var trackObj = {
           artistName: artistName,
           artistID: tracks[i].artistID,
           trackName: tracks[i].name,
         }
 
-        //store it in songStorage
         songStorage[tracks[i].id] = trackObj;
       }
 
@@ -112,16 +105,11 @@ var searchSpotify = (artist, cb) => {
         }
       }
 
-      //create a doc with the most danceable track's info
-      var trackObj = {
+      const trackObj = {
        artistName: songStorage[trackObjs[index].id].artistName,
-       //artistId: songStorage[trackObjs[index].id].artistID,
        trackName: songStorage[trackObjs[index].id].trackName,
        id: trackObjs[index].id
       }
-
-      //store track info in db
-      //db.saveTrack(trackObj);
 
       cb(trackObj);
 
