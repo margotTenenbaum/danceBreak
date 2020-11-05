@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const helper = require('./Helpers/spotify.js');
+const db = require('./database/index.js');
 
 const PORT = 3000;
 
@@ -17,7 +18,20 @@ app.post('/artist', (req, res) => {
     console.log('results: ', results);
     res.send(results);
   })
-})
+});
+
+app.post('/addSong', (req, res) => {
+  db.saveTrack(req.body, () => {
+    res.status(201);
+  })
+});
+
+app.get('/getPlaylist', (req, res) => {
+  db.getPlaylist((playlist) => {
+    console.log('got playlist: ', playlist);
+    res.send(playlist);
+  })
+});
 
 app.listen(PORT, function() {
   console.log(`listening on port ${PORT}!`);

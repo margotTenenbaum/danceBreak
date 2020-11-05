@@ -25,7 +25,7 @@ const songRequest = (cb) => {
   cb(lastSavedId);
 }
 
-const saveTrack = (track) => {
+const saveTrack = (track, next) => {
   const newTrack = new Track({
     artistName: track.artistName,
     trackName: track.trackName,
@@ -39,17 +39,18 @@ const saveTrack = (track) => {
       console.log('error saving track to db: ', err);
     } else {
       console.log('track saved to db');
+      next();
     }
   })
 };
 
 
-const getPlaylist = function(cb) {
+const getPlaylist = function(next) {
   Track.find({}, function(err, items) {
     if(err) {
-      cb(err, null);
+      console.log('error getting playlist from db: ', err);
     } else {
-      cb(null, items);
+      next(items);
     }
   });
 };

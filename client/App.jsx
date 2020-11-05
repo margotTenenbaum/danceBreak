@@ -12,22 +12,37 @@ class App extends React.Component {
     this.state = {
       songID: '4kbj5MwxO1bq9wjT5g9HaA',
       artist: '',
-      songTitle: ''
+      songTitle: '',
+      playlist: []
     }
 
+    this.getPlaylist = this.getPlaylist.bind(this);
     this.onChange = this.onChange.bind(this);
     this.search = this.search.bind(this);
     this.addToPlaylist = this.addToPlaylist.bind(this);
   }
 
-  // onComponentDidMount() {
-  //   //get playlist
-  // }
+  componentDidMount() {
+    this.getPlaylist();
+  }
+
+  getPlaylist() {
+    axios({
+      method: 'get',
+      url: '/getPlaylist'
+    })
+    .then(res => {
+      console.log('playlist: ', res.data);
+    })
+    .catch(err => {
+      console.log('err getting playlist: ', err);
+    });
+  }
   
   onChange(e) {
     this.setState({
       artist: e.target.value
-    })
+    });
   }
 
   //retrieve most danceable song from searched artist
@@ -41,7 +56,6 @@ class App extends React.Component {
       }
     })
     .then(res => {
-      console.log('res: ', res.data);
       this.setState({
         songID: res.data.id,
         songTitle: res.data.trackName
@@ -52,8 +66,24 @@ class App extends React.Component {
     })
   }
 
-  addToPlaylist() {
-
+  addToPlaylist(e) {
+    e.preventDefault();
+    axios({
+      method: 'post',
+      url: '/addSong',
+      data: {
+        artistName: this.state.artist,
+        trackName: this.state.songTitle,
+        trackID: this.state.songID
+      }
+    })
+    .then(res => {
+      //call get playlist?
+      console.log('back in react');
+    })
+    .catch(err => {
+      console.log('error in axios addToPlaylist: ', err);
+    })
   }
 
   render() {
