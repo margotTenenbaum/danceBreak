@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 
 import Player from './Components/Player.jsx';
-//import Playlist from './Components/Playlist.jsx';
+import Playlist from './Components/Playlist.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -32,7 +32,9 @@ class App extends React.Component {
       url: '/getPlaylist'
     })
     .then(res => {
-      console.log('playlist: ', res.data);
+      this.setState({
+        playlist: res.data
+      });
     })
     .catch(err => {
       console.log('err getting playlist: ', err);
@@ -78,8 +80,7 @@ class App extends React.Component {
       }
     })
     .then(res => {
-      //call get playlist?
-      console.log('back in react');
+      this.getPlaylist();
     })
     .catch(err => {
       console.log('error in axios addToPlaylist: ', err);
@@ -101,9 +102,9 @@ class App extends React.Component {
         <div>
           <Player songID={this.state.songID}/>
         </div>
-        {/* <div>
-          <Playlist />
-        </div> */}
+        <div>
+          <Playlist playlist={this.state.playlist} />
+        </div>
       </div>
     )
   }
