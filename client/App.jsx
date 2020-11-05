@@ -12,16 +12,17 @@ class App extends React.Component {
     this.state = {
       songID: '4kbj5MwxO1bq9wjT5g9HaA',
       artist: '',
-      song: ''
+      songTitle: ''
     }
 
     this.onChange = this.onChange.bind(this);
     this.search = this.search.bind(this);
+    this.addToPlaylist = this.addToPlaylist.bind(this);
   }
 
-  onComponentDidMount() {
-    //get playlist
-  }
+  // onComponentDidMount() {
+  //   //get playlist
+  // }
   
   onChange(e) {
     this.setState({
@@ -30,7 +31,8 @@ class App extends React.Component {
   }
 
   //retrieve most danceable song from searched artist
-  search() {
+  search(e) {
+    e.preventDefault();
     axios({
       method: 'post',
       url: '/artist',
@@ -39,14 +41,19 @@ class App extends React.Component {
       }
     })
     .then(res => {
+      console.log('res: ', res.data);
       this.setState({
-        songID: res.songID,
-        song: res.song
+        songID: res.data.id,
+        songTitle: res.data.trackName
       })
     })
     .catch(err => {
       console.log('error in axios artist request: ', err);
     })
+  }
+
+  addToPlaylist() {
+
   }
 
   render() {
@@ -60,7 +67,7 @@ class App extends React.Component {
           <button form='artist' onClick={this.search}>Let's Dance</button>
           </form>
         </div>
-        <button>Add to playlist?</button>
+        <button onClick={this.addToPlaylist}>Add to playlist?</button>
         <div>
           <Player songID={this.state.songID}/>
         </div>

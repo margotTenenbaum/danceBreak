@@ -15,6 +15,7 @@ app.post('/artist', (req, res) => {
   console.log('artist received in server: ', req.body.artist);
   helper.searchSpotify(req.body.artist, (results) => {
     console.log('results: ', results);
+    res.send(results);
   })
 })
 
