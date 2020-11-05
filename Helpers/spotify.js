@@ -11,17 +11,17 @@ var artistID;
 var artistName;
 
 var songStorage = {
-  //id: {trackName, artistName, artistID}
+  //id: {artistName, artistID, trackName}
 }
 
 
 var searchSpotify = (artist, cb) => {
-  var string = process.env.CLIENTID + ':' + process.env.SECRET;
-  var artistName = artist;
+  const string = process.env.CLIENTID + ':' + process.env.SECRET;
+  artistName = artist;
 
-  var encodedString = btoa(string);
+  const encodedString = btoa(string);
 
-  var optionsToken = {
+  const optionsToken = {
     method: 'POST',
     json: true,
     url: 'https://accounts.spotify.com/api/token',
@@ -37,11 +37,10 @@ var searchSpotify = (artist, cb) => {
   //call Spotify's API for access token
   axios(optionsToken)
     .then(data => {
-      console.log('receiving token data');
+      console.log('spotify token received');
       token = data.data.access_token;
-      console.log('access token: ', token);
 
-      var optionsArtist = {
+      const optionsArtist = {
         method: 'GET',
         url: 'https://api.spotify.com/v1/search?type=artist&q=' + artist,
         headers: {
@@ -53,10 +52,9 @@ var searchSpotify = (artist, cb) => {
       return axios(optionsArtist)
     })
     .then(artistId => {
-      console.log('artistId: ', artistId.data.artists.items[0].id);
       artistID = artistId.data.artists.items[0].id;
 
-      optionsTopTracks = {
+      const optionsTopTracks = {
         url: 'https://api.spotify.com/v1/artists/' + artistID + '/top-tracks?country=US',
         headers: {
           Authorization: 'Bearer ' + token
@@ -67,11 +65,9 @@ var searchSpotify = (artist, cb) => {
       return axios(optionsTopTracks)
     })
     .then(data => {
-      console.log('receiving track data');
       // var track = data.data.tracks[0].id;
       // var trackName = data.data.tracks[0].name;
       var tracks = data.data.tracks;
-      console.log('top track: ', tracks[0]);
 
       var top5Tracks = '';
       //push 5 track ids to an array
@@ -93,9 +89,7 @@ var searchSpotify = (artist, cb) => {
         songStorage[tracks[i].id] = trackObj;
       }
 
-      console.log('top5Tracks: ', top5Tracks);
-
-      //call spotify's get audio features for several tracks api
+      //call spotify's 'get audio features for several tracks' api
       optionsTop5 = {
         url: 'https://api.spotify.com/v1/audio-features?ids=' + top5Tracks,
         headers: {
@@ -106,8 +100,7 @@ var searchSpotify = (artist, cb) => {
       return axios(optionsTop5)
     })
     .then(top5 => {
-      console.log('in top5: ', top5.data);
-      var trackObjs = top5.data.audio_features;
+      const trackObjs = top5.data.audio_features;
 
       var danceability = 0;
       var index = 0;
@@ -119,29 +112,23 @@ var searchSpotify = (artist, cb) => {
         }
       }
 
-
       //create a doc with the most danceable track's info
-
       var trackObj = {
        artistName: songStorage[trackObjs[index].id].artistName,
-       artistId: songStorage[trackObjs[index].id].artistID,
+       //artistId: songStorage[trackObjs[index].id].artistID,
        trackName: songStorage[trackObjs[index].id].trackName,
        id: trackObjs[index].id
       }
 
-      console.log('trackObj for db: ', trackObj);
       //store track info in db
       //db.saveTrack(trackObj);
 
-
-      cb(track);
+      cb(trackObj);
 
     })
     .catch(err => {
       console.log('axios token err: ', err);
     })
-
 };
-
 
 module.exports.searchSpotify = searchSpotify
