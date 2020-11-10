@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
+import Form from './Components/Form.jsx';
 import Player from './Components/Player.jsx';
 import Playlist from './Components/Playlist.jsx';
 
@@ -112,13 +113,7 @@ class App extends React.Component {
     return (
       <div>
         <h1>Dance Break!</h1>
-        <div>
-          <h3>Find your favorite artist's most danceable track</h3>
-          <form id='artist'>
-          <input type='text' id='artistInput' onChange={this.onChange}></input>
-          <button form='artist' onClick={this.search}>Let's Dance</button>
-          </form>
-        </div>
+        <Form captureInput={this.onChange} search={this.search}/>
         <button onClick={this.addToPlaylist}>Add to playlist?</button>
         <div>
           <Player songID={this.state.songID}/>
