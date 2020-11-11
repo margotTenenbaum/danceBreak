@@ -5,6 +5,8 @@ import Form from './Components/Form.jsx';
 import Player from './Components/Player.jsx';
 import Playlist from './Components/Playlist.jsx';
 
+import { wrapper } from './style.js';
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -32,16 +34,16 @@ class App extends React.Component {
       method: 'get',
       url: '/getPlaylist'
     })
-    .then(res => {
-      this.setState({
-        playlist: res.data
+      .then(res => {
+        this.setState({
+          playlist: res.data
+        });
+      })
+      .catch(err => {
+        console.log('err getting playlist: ', err);
       });
-    })
-    .catch(err => {
-      console.log('err getting playlist: ', err);
-    });
   }
-  
+
   onChange(e) {
     this.setState({
       artist: e.target.value
@@ -58,15 +60,15 @@ class App extends React.Component {
         artist: this.state.artist
       }
     })
-    .then(res => {
-      this.setState({
-        songID: res.data.id,
-        songTitle: res.data.trackName
+      .then(res => {
+        this.setState({
+          songID: res.data.id,
+          songTitle: res.data.trackName
+        })
       })
-    })
-    .catch(err => {
-      console.log('error in axios artist request: ', err);
-    })
+      .catch(err => {
+        console.log('error in axios artist request: ', err);
+      })
   }
 
   addToPlaylist(e) {
@@ -80,12 +82,12 @@ class App extends React.Component {
         trackID: this.state.songID
       }
     })
-    .then(res => {
-      this.getPlaylist();
-    })
-    .catch(err => {
-      console.log('error in axios addToPlaylist: ', err);
-    })
+      .then(res => {
+        this.getPlaylist();
+      })
+      .catch(err => {
+        console.log('error in axios addToPlaylist: ', err);
+      })
   }
 
   songClick(e) {
@@ -97,29 +99,31 @@ class App extends React.Component {
         artistName: e.target.id
       }
     })
-    .then(res => {
-      this.setState({
-        artist: res.data.artistName,
-        songID: res.data.trackID,
-        songTitle: res.data.trackName
+      .then(res => {
+        this.setState({
+          artist: res.data.artistName,
+          songID: res.data.trackID,
+          songTitle: res.data.trackName
+        })
       })
-    })
-    .catch(err => {
-      console.log('err in axios getSong: ', err);
-    })
+      .catch(err => {
+        console.log('err in axios getSong: ', err);
+      })
   }
 
   render() {
     return (
-      <div>
+      <div style={wrapper}>
         <h1>Dance Break!</h1>
-        <Form captureInput={this.onChange} search={this.search}/>
-        <button onClick={this.addToPlaylist}>Add to playlist?</button>
+        <div>(disco ball)</div>
+        <Form captureInput={this.onChange} search={this.search} />
+        <div>(empty space)</div>
         <div>
-          <Player songID={this.state.songID}/>
+          <Player songID={this.state.songID} />
+          <button onClick={this.addToPlaylist}>Add to playlist?</button>
         </div>
         <div>
-          <Playlist playlist={this.state.playlist} songClick={this.songClick}/>
+          <Playlist playlist={this.state.playlist} songClick={this.songClick} />
         </div>
       </div>
     )
