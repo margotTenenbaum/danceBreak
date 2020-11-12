@@ -5,7 +5,7 @@ import Form from './Components/Form.jsx';
 import Player from './Components/Player.jsx';
 import Playlist from './Components/Playlist.jsx';
 
-import { wrapper } from './style.js';
+import { wrapper, title, discoBall } from './style.js';
 
 class App extends React.Component {
   constructor(props) {
@@ -114,8 +114,8 @@ class App extends React.Component {
   render() {
     return (
       <div style={wrapper}>
-        <h1>Dance Break!</h1>
-        <div>(disco ball)</div>
+        <h1 style={title}>Dance Break!</h1>
+        <div style={discoBall}></div>
         <Form captureInput={this.onChange} search={this.search} />
         <div>(empty space)</div>
         <div>
