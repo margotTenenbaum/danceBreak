@@ -5,7 +5,7 @@ import Form from './Components/Form.jsx';
 import Player from './Components/Player.jsx';
 import Playlist from './Components/Playlist.jsx';
 
-import { wrapper, title, discoBall } from './style.js';
+import { wrapper, title, discoBall, form, player, playlist, button } from './style.js';
 
 class App extends React.Component {
   constructor(props) {
@@ -116,14 +116,13 @@ class App extends React.Component {
       <div style={wrapper}>
         <h1 style={title}>Dance Break!</h1>
         <div style={discoBall}></div>
-        <Form captureInput={this.onChange} search={this.search} />
-        <div>(empty space)</div>
+        <Form captureInput={this.onChange} search={this.search} style={form} />
         <div>
-          <Player songID={this.state.songID} />
-          <button onClick={this.addToPlaylist}>Add to playlist?</button>
+          <Player songID={this.state.songID} style={player} />
+          <button onClick={this.addToPlaylist} style={button} >Add to playlist?</button>
         </div>
         <div>
-          <Playlist playlist={this.state.playlist} songClick={this.songClick} />
+          <Playlist playlist={this.state.playlist} songClick={this.songClick} style={playlist} />
         </div>
       </div>
     )
