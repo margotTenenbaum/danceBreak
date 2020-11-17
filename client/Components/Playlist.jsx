@@ -6,8 +6,8 @@ const Playlist = (props) => (
     <table style={table}>
       <thead>
         <tr>
-          <th style={th}>Artist Name</th>
-          <th style={th}>Track Name</th>
+          <th style={th}>Artist</th>
+          <th style={th}>Track</th>
         </tr>
       </thead>
       <tbody>

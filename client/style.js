@@ -1,9 +1,9 @@
 const wrapper = {
   display: 'grid',
-  width: '1000px',
-  gridTemplateColumns: '2fr 1fr',
+  width: '1250px',
+  gridTemplateColumns: '1fr 1fr 1fr',
   girdTemplateRows: '1fr 1fr 1fr',
-  gridRowGap: '10px',
+  gridRowGap: '30px',
   gridColumnGap: '45px',
   backgroundColor: 'pink',
   padding: '25px'
@@ -14,7 +14,7 @@ const title = {
   fontSize: '500%',
   gridRowStart: '1',
   gridColumnStart: '1',
-  paddingTop: '80px'
+  gridColumnEnd: '3'
 }
 
 const discoBall = {
@@ -25,27 +25,38 @@ const discoBall = {
   backgroundSize: 'cover',
   gridRowStart: '1',
   gridRowEnd: '3',
-  gridColumnStart: '2'
+  gridColumnStart: '3'
 }
 
 const form = {
   gridRowStart: '2',
-  gridColumnStart: '1'
+  gridColumnStart: '1',
+  gridColumnEnd: '3',
+  fontWeight: '400',
+  fontSize: '200%'
+}
+
+const input = {
+  height: '30px',
+  width: '600px'
 }
 
 const player = {
   gridRowStart: '3',
-  gridColumnStart: '1'
+  gridColumnStart: '1',
+  padding: '30px'
 }
 
 const playlist = {
   gridRowStart: '3',
-  gridColumnStart: '2'
+  gridColumnStart: '2',
+  gridColumnEnd: '4'
 }
 
 const table = {
   border: '3px solid black',
-  background: 'gray'
+  background: 'gray',
+  minWidth: '700px'
 }
 
 const td = {
@@ -86,6 +97,7 @@ export {
   discoBall,
   title,
   form,
+  input,
   player,
   playlist,
   table,

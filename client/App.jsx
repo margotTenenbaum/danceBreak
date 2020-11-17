@@ -116,13 +116,15 @@ class App extends React.Component {
       <div style={wrapper}>
         <h1 style={title}>Dance Break!</h1>
         <div style={discoBall}></div>
-        <Form captureInput={this.onChange} search={this.search} style={form} />
+        <div style={form}>
+        <Form captureInput={this.onChange} search={this.search} />
+        </div>
         <div>
           <Player songID={this.state.songID} style={player} />
           <button onClick={this.addToPlaylist} style={button} >Add to playlist?</button>
         </div>
-        <div>
-          <Playlist playlist={this.state.playlist} songClick={this.songClick} style={playlist} />
+        <div style={playlist}>
+          <Playlist playlist={this.state.playlist} songClick={this.songClick} />
         </div>
       </div>
     )
