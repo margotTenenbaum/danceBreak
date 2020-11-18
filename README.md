@@ -3,13 +3,13 @@
 Dance Break is a React application that allows users to find and play the most danceable top track from their favorite artist.
 
 ## Table of Contents
-  1. [How To Use (##how-to-use)]
+  1. [How To Use] (##how-to-use)
   2. Features
   3. Screenshots
   4. Built With
   5. Tests
 
-##How To Use
+## How To Use
 To clone and run this application, you'll need Git and Node.js installed on your computer. You'll also need to register for a Spotify developer account. 
 
 To register with Spotify:
