@@ -45,6 +45,8 @@ $ npm run test
 ## Screenshots
 ![Pasted Graphic](https://user-images.githubusercontent.com/49254170/99435477-2d223780-28de-11eb-9ec0-4a1f338f12d0.png)
 
+![Pasted Graphic](https://user-images.githubusercontent.com/49254170/99566259-a67f6000-299a-11eb-9d0c-89fb490463ff.png)
+
 ## Built With:
 -React
 
