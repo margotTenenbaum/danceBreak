@@ -3,7 +3,7 @@
 Dance Break is a React application that allows users to find and play the most danceable top track from their favorite artist.
 
 ## Table of Contents
-  1. [How To Use](##how-to-use)
+  1. [How To Use](##-how-to-use)
   2. Features
   3. Screenshots
   4. Built With
