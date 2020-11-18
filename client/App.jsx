@@ -15,7 +15,9 @@ class App extends React.Component {
       songID: '4kbj5MwxO1bq9wjT5g9HaA',
       artist: '',
       songTitle: '',
-      playlist: []
+      playlist: [],
+      inPlaylist: false,
+      noAdd: false
     }
 
     this.getPlaylist = this.getPlaylist.bind(this);
@@ -63,7 +65,9 @@ class App extends React.Component {
       .then(res => {
         this.setState({
           songID: res.data.id,
-          songTitle: res.data.trackName
+          songTitle: res.data.trackName,
+          inPlaylist: false,
+          noAdd: false
         })
       })
       .catch(err => {
@@ -73,21 +77,27 @@ class App extends React.Component {
 
   addToPlaylist(e) {
     e.preventDefault();
-    axios({
-      method: 'post',
-      url: '/addSong',
-      data: {
-        artistName: this.state.artist,
-        trackName: this.state.songTitle,
-        trackID: this.state.songID
-      }
-    })
-      .then(res => {
-        this.getPlaylist();
+    if (this.state.inPlaylist) {
+      this.setState({
+        noAdd: true
+      });
+    } else {
+      axios({
+        method: 'post',
+        url: '/addSong',
+        data: {
+          artistName: this.state.artist,
+          trackName: this.state.songTitle,
+          trackID: this.state.songID
+        }
       })
-      .catch(err => {
-        console.log('error in axios addToPlaylist: ', err);
-      })
+        .then(res => {
+          this.getPlaylist();
+        })
+        .catch(err => {
+          console.log('error in axios addToPlaylist: ', err);
+        })
+    }
   }
 
   songClick(e) {
@@ -103,7 +113,8 @@ class App extends React.Component {
         this.setState({
           artist: res.data.artistName,
           songID: res.data.trackID,
-          songTitle: res.data.trackName
+          songTitle: res.data.trackName,
+          inPlaylist: true
         })
       })
       .catch(err => {
@@ -117,9 +128,10 @@ class App extends React.Component {
         <h1 style={title}>Dance Break!</h1>
         <div style={discoBall}></div>
         <div style={form}>
-        <Form captureInput={this.onChange} search={this.search} />
+          <Form captureInput={this.onChange} search={this.search} />
         </div>
         <div>
+          {this.state.noAdd && <h3>Song already in playlist!</h3>}
           <Player songID={this.state.songID} addToPlaylist={this.addToPlaylist} style={player} />
         </div>
         <div style={playlist}>
