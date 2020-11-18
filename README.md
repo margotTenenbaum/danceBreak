@@ -1,13 +1,15 @@
 # Dance Break
 
-Dance Break allows users to find and play the most danceable top track from their favorite artist.
+Dance Break is a React application that allows users to find and play the most danceable top track from their favorite artist.
 
 ## Table of Contents
-  1. How To Use
-  2.
-  3. Tests
+  1. [How To Use (##how-to-use)]
+  2. Features
+  3. Screenshots
+  4. Built With
+  5. Tests
 
-## How To Use
+##How To Use
 To clone and run this application, you'll need Git and Node.js installed on your computer. You'll also need to register for a Spotify developer account. 
 
 To register with Spotify:
@@ -42,6 +44,12 @@ $ npm start
 $ npm run test
 ```
 
+## Features
+-Search for any artist in Spotify's catalogue and find their most danceable top track
+-Listen via the Spotify player widget
+-Add the track to your playlist to save it for later
+-Play tracks straight from your playlist by clicking on the artist's name
+
 ## Screenshots
 ![Pasted Graphic](https://user-images.githubusercontent.com/49254170/99435477-2d223780-28de-11eb-9ec0-4a1f338f12d0.png)
 
@@ -49,8 +57,10 @@ $ npm run test
 
 ## Built With:
 -React
-
-## Installation
+-MongoDB
+-Express
+-Axios
+-Styled Components
 
 ## Tests
-This app uses the Jest testrunner and react-testing-library.
+This app comes with a suite of front-end unit tests built with Jest and react-testing-library.
