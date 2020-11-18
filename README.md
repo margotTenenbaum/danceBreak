@@ -27,13 +27,16 @@ $ cd danceBreak
 # Install dependencies
 $ npm install
 
-# Create a .env file and format it with your Spotify Client ID and Secret
+# Create a .env file and format it with your Spotify Client ID and Secret:
+
   CLIENTID='YOUR_CLIENT_ID'
   SECRET='YOUR_CLIENT_SECRET'
 
 # Run the app
 $ npm run build
 $ npm start
+
+# View the app by opening a browser window and navigating to http://localhost:3000
 
 # (Optional) Run tests
 $ npm run test
@@ -47,3 +50,4 @@ $ npm run test
 ## Installation
 
 ## Tests
+This app uses the Jest testrunner and react-testing-library.
