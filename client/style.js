@@ -47,6 +47,12 @@ const player = {
   padding: '30px'
 }
 
+const center = {
+  display: 'flex',
+  justifyContent: 'center',
+  flexWrap: 'wrap'
+}
+
 const playlist = {
   gridRowStart: '3',
   gridColumnStart: '2',
@@ -99,6 +105,7 @@ export {
   form,
   input,
   player,
+  center,
   playlist,
   table,
   td,
