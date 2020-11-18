@@ -45,10 +45,10 @@ $ npm run test
 ```
 
 ## Features
--Search for any artist in Spotify's catalogue and find their most danceable top track
--Listen via the Spotify player widget
--Add the track to your playlist to save it for later
--Play tracks straight from your playlist by clicking on the artist's name
+- Search for any artist in Spotify's catalogue and find their most danceable top track
+- Listen via the Spotify player widget
+- Add the track to your playlist to save it for later
+- Play tracks straight from your playlist by clicking on the artist's name
 
 ## Screenshots
 ![Pasted Graphic](https://user-images.githubusercontent.com/49254170/99435477-2d223780-28de-11eb-9ec0-4a1f338f12d0.png)
@@ -56,11 +56,11 @@ $ npm run test
 ![Pasted Graphic](https://user-images.githubusercontent.com/49254170/99566259-a67f6000-299a-11eb-9d0c-89fb490463ff.png)
 
 ## Built With:
--React
--MongoDB
--Express
--Axios
--Styled Components
+- React
+- MongoDB
+- Express
+- Axios
+- Styled Components
 
 ## Tests
 This app comes with a suite of front-end unit tests built with Jest and react-testing-library.
