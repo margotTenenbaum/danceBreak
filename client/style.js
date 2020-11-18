@@ -62,7 +62,9 @@ const playlist = {
 const table = {
   border: '3px solid black',
   background: 'gray',
-  minWidth: '700px'
+  minWidth: '700px',
+  fontSize: '125%',
+  fontWeight: 'bold'
 }
 
 const td = {
@@ -82,7 +84,7 @@ const tdArtist = {
 const th = {
   padding: '15px',
   textAlign: 'center',
-  fontWeight: 'bold',
+  fontSize: '150%',
   borderBottom: '1px solid black'
 }
 

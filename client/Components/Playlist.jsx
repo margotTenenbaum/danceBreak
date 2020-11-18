@@ -1,5 +1,5 @@
 import React from 'react';
-import { table, th, td, tdArtist } from '../style.js';
+import { table, center, th, td, tdArtist } from '../style.js';
 
 const Playlist = (props) => (
   <div>
