@@ -22,7 +22,7 @@ app.post('/artist', (req, res) => {
 
 app.post('/addSong', (req, res) => {
   db.saveTrack(req.body, () => {
-    res.status(201);
+    res.status(201).send();
   })
 });
 
