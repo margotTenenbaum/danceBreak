@@ -29,10 +29,11 @@ $ cd danceBreak
 # Install dependencies
 $ npm install
 
-# Create a .env file and format it with your Spotify Client ID and Secret:
+# Create a .env file and format it with your Spotify ClientID, Secret and desired port:
 
   CLIENTID='YOUR_CLIENT_ID'
   SECRET='YOUR_CLIENT_SECRET'
+  PORT=3000
 
 # Run the app
 $ npm run build
