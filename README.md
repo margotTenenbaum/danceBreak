@@ -5,7 +5,7 @@ Dance Break is a React application that allows users to find and play the most d
 ## Table of Contents
   1. [How To Use](#how-to-use)
   2. [Features](#features)
-  3. [Screenshots](#screenshots)
+  3. [Screenshots and GIF](#screenshots)
   4. [Built With](#built-with)
   5. [Tests](#tests)
 
@@ -53,8 +53,11 @@ $ npm run test
 
 ## Screenshots
 ![Pasted Graphic](https://user-images.githubusercontent.com/49254170/99435477-2d223780-28de-11eb-9ec0-4a1f338f12d0.png)
+
+Displays Spotify player widget and user's custom playlist:
 ![Pasted Graphic](https://user-images.githubusercontent.com/49254170/99566259-a67f6000-299a-11eb-9d0c-89fb490463ff.png)
 
+Search for any artist and discover their most danceable track. Add the track to your playlist to save for easy access:
 ![danceBreakGif2](https://user-images.githubusercontent.com/49254170/99830925-6223c980-2b2c-11eb-9fdd-4d805bab19c7.gif)
 
 ## Built With:
