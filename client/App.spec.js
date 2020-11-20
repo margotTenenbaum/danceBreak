@@ -59,11 +59,9 @@ describe('Playlist', () => {
   test('renders Playlist component with correct track information', () => {
     const onClick = jest.fn();
     const { rerender } = render(<Playlist songClick={onClick} playlist={[{ artistname: 'MGMT', trackName: 'Electric Feel' }]} />);
-    //expect(screen.getByTestId('playlistArtist')).toHaveAttribute('id', 'MGMT');
     expect(screen.getByTestId('playlistTrack')).toHaveAttribute('id', 'Electric Feel');
 
     rerender(<Playlist songClick={onClick} playlist={[{ artistname: 'Cake', trackName: 'Short Skirt/Long Jacket' }]} />);
-    //expect(screen.getByTestId('playlistArtist')).toHaveAttribute('id', 'Cake');
     expect(screen.getByTestId('playlistTrack')).toHaveAttribute('id', 'Short Skirt/Long Jacket');
   });
 
