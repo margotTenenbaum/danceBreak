@@ -4,10 +4,12 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const helper = require('./Helpers/spotify.js');
 const db = require('./database/index.js');
-
-const PORT = 3000;
+require('dotenv').config({
+  path: path.resolve(__dirname, './.env')
+});
 
 const app = express();
+
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -38,6 +40,6 @@ app.post('/getSong', (req, res) => {
   })
 })
 
-app.listen(PORT, function() {
-  console.log(`listening on port ${PORT}!`);
+app.listen(process.env.PORT, function() {
+  console.log(`listening on port ${process.env.PORT}!`);
 });
