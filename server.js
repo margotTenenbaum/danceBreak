@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.post('/artist', (req, res) => {
-  helper.searchSpotify(req.body.artist, (results, status) => {
+  helper.searchSpotify(req.body.artistName, (results, status) => {
       res.status(status).send(results);
   })
 });

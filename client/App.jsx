@@ -13,8 +13,8 @@ class App extends React.Component {
 
     this.state = {
       songID: '4kbj5MwxO1bq9wjT5g9HaA',
-      artist: '',
-      songTitle: '',
+      artistName: '',
+      trackName: '',
       playlist: [],
       inPlaylist: false,
       noAdd: false
@@ -48,7 +48,7 @@ class App extends React.Component {
 
   onChange(e) {
     this.setState({
-      artist: e.target.value
+      artistName: e.target.value
     });
   }
 
@@ -59,13 +59,13 @@ class App extends React.Component {
       method: 'post',
       url: '/artist',
       data: {
-        artist: this.state.artist
+        artistName: this.state.artistName
       }
     })
       .then(res => {
         this.setState({
           songID: res.data.id,
-          songTitle: res.data.trackName,
+          trackName: res.data.trackName,
           inPlaylist: false,
           noAdd: false
         })
@@ -86,8 +86,8 @@ class App extends React.Component {
         method: 'post',
         url: '/addSong',
         data: {
-          artistName: this.state.artist,
-          trackName: this.state.songTitle,
+          artistName: this.state.artistName,
+          trackName: this.state.trackName,
           trackID: this.state.songID
         }
       })
@@ -111,9 +111,9 @@ class App extends React.Component {
     })
       .then(res => {
         this.setState({
-          artist: res.data.artistName,
+          artistName: res.data.artistName,
           songID: res.data.trackID,
-          songTitle: res.data.trackName,
+          trackName: res.data.trackName,
           inPlaylist: true
         })
       })
