@@ -17,8 +17,8 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.post('/artist', (req, res) => {
-  helper.searchSpotify(req.body.artist, (results) => {
-    res.send(results);
+  helper.searchSpotify(req.body.artist, (results, status) => {
+      res.status(status).send(results);
   })
 });
 
@@ -30,22 +30,13 @@ app.post('/addSong', (req, res) => {
 
 app.get('/getPlaylist', (req, res) => {
   db.getPlaylist((playlist, status) => {
-    if (status === 500) {
-      res.status(status).send();
-    } else {
-      res.send(playlist);
-    }
-
+    res.status(status).send(playlist);
   });
 });
 
 app.post('/getSong', (req, res) => {
   db.songRequest(req.body.artistName, (song, status) => {
-    if (status === 500) {
-      res.status(status).send();
-    } else {
-      res.send(song);
-    }
+    res.status(status).send(song);
   })
 })
 

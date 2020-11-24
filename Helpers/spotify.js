@@ -111,11 +111,12 @@ var searchSpotify = (artist, cb) => {
        id: trackObjs[index].id
       }
 
-      cb(trackObj);
+      cb(trackObj, 200);
 
     })
     .catch(err => {
       console.log('axios token err: ', err);
+      cb(null, 500);
     })
 };
 
