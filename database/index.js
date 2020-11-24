@@ -26,11 +26,12 @@ const saveTrack = (track, next) => {
     trackID: track.trackID
   })
 
-  newTrack.save((err, doc) => {
+  newTrack.save((err) => {
     if (err) {
       console.log('error saving track to db: ', err);
+      next(500)
     } else {
-      next();
+      next(201);
     }
   })
 };
@@ -57,5 +58,4 @@ const songRequest = (artist, next) => {
 
 module.exports.getPlaylist = getPlaylist;
 module.exports.saveTrack = saveTrack;
-//odule.exports.requestedSong = lastSavedId;
 module.exports.songRequest = songRequest;

@@ -23,8 +23,8 @@ app.post('/artist', (req, res) => {
 });
 
 app.post('/addSong', (req, res) => {
-  db.saveTrack(req.body, () => {
-    res.status(201).send();
+  db.saveTrack(req.body, (status) => {
+    res.status(status).send();
   })
 });
 
