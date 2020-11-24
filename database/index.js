@@ -40,8 +40,9 @@ const getPlaylist = function(next) {
   Track.find({}, function(err, items) {
     if(err) {
       console.log('error getting playlist from db: ', err);
+      next(null, 500);
     } else {
-      next(items);
+      next(items, 200);
     }
   });
 };
@@ -50,8 +51,9 @@ const songRequest = (artist, next) => {
   Track.find({artistName: artist}, (err, song) => {
     if (err) {
       console.log('error getting song from db: ', err);
+      next(null, 500);
     } else {
-      next(song[0]);
+      next(song[0], 200);
     }
   })
 }

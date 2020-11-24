@@ -29,14 +29,23 @@ app.post('/addSong', (req, res) => {
 });
 
 app.get('/getPlaylist', (req, res) => {
-  db.getPlaylist((playlist) => {
-    res.send(playlist);
+  db.getPlaylist((playlist, status) => {
+    if (status === 500) {
+      res.status(status).send();
+    } else {
+      res.send(playlist);
+    }
+
   });
 });
 
 app.post('/getSong', (req, res) => {
-  db.songRequest(req.body.artistName, (song) => {
-    res.send(song);
+  db.songRequest(req.body.artistName, (song, status) => {
+    if (status === 500) {
+      res.status(status).send();
+    } else {
+      res.send(song);
+    }
   })
 })
 
