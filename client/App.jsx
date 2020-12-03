@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import log from 'loglevel';
 
 import Form from './Components/Form.jsx';
 import Player from './Components/Player.jsx';
@@ -42,7 +43,8 @@ class App extends React.Component {
         });
       })
       .catch(err => {
-        console.log('err getting playlist: ', err);
+        log.warn(`error getting playlist`);
+        log.error(err);
       });
   }
 
@@ -71,7 +73,8 @@ class App extends React.Component {
         })
       })
       .catch(err => {
-        console.log('error in axios artist request: ', err);
+        log.warn(`error in axios artist request`);
+        log.error(err);
       })
   }
 
@@ -95,7 +98,8 @@ class App extends React.Component {
           this.getPlaylist();
         })
         .catch(err => {
-          console.log('error in axios addToPlaylist: ', err);
+          log.warn(`error in axios addToPlaylist`);
+          log.error(err);
         })
     }
   }
@@ -118,7 +122,8 @@ class App extends React.Component {
         })
       })
       .catch(err => {
-        console.log('err in axios getSong: ', err);
+        log.warn(`error in axios getSong`);
+        log.error(err);
       })
   }
 
