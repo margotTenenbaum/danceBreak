@@ -11,6 +11,8 @@ import Playlist from './Components/Playlist.jsx';
 describe('App', () => {
   test('renders App component', () => {
     render(<App />);
+    
+    expect(screen.getByTestId('title')).toBeInTheDocument();
   });
 });
 
@@ -58,16 +60,16 @@ describe('Player', () => {
 describe('Playlist', () => {
   test('renders Playlist component with correct track information', () => {
     const onClick = jest.fn();
-    const { rerender } = render(<Playlist songClick={onClick} playlist={[{ artistname: 'MGMT', trackName: 'Electric Feel' }]} />);
+    const { rerender } = render(<Playlist songClick={onClick} playlist={[{ artistname: 'MGMT', trackName: 'Electric Feel', trackID: '1234' }]} />);
     expect(screen.getByTestId('playlistTrack')).toHaveAttribute('id', 'Electric Feel');
 
-    rerender(<Playlist songClick={onClick} playlist={[{ artistname: 'Cake', trackName: 'Short Skirt/Long Jacket' }]} />);
+    rerender(<Playlist songClick={onClick} playlist={[{ artistname: 'Cake', trackName: 'Short Skirt/Long Jacket', trackID: '5678' }]} />);
     expect(screen.getByTestId('playlistTrack')).toHaveAttribute('id', 'Short Skirt/Long Jacket');
   });
 
   test(`calls onClick function when a Playlist song is clicked`, () => {
     const onClick = jest.fn();
-    render(<Playlist songClick={onClick} playlist={[{ artistname: 'abcd', trackName: 'efgh' }]} />);
+    render(<Playlist songClick={onClick} playlist={[{ artistname: 'abcd', trackName: 'efgh', trackID: '12345' }]} />);
 
     fireEvent(screen.getByTestId('playlistArtist'),
       new MouseEvent('click', {
