@@ -12,7 +12,7 @@ const Playlist = (props) => (
       </thead>
       <tbody>
         {props.playlist.map(song => {
-          return <tr>
+          return <tr key={song.artistName}>
             <td style={tdArtist} data-testid='playlistArtist' id={song.artistName} onClick={props.songClick}>{song.artistName}</td>
             <td style={td} data-testid='playlistTrack' id={song.trackName}>{song.trackName}</td>
           </tr>
