@@ -12,7 +12,7 @@ var songStorage = {
   //id: {artistName, artistID, trackName}
 }
 
-var searchSpotify = (artist, cb) => {
+var searchSpotify = (artist, next) => {
   const string = process.env.CLIENTID + ':' + process.env.SECRET;
   artistName = artist;
 
@@ -98,25 +98,27 @@ var searchSpotify = (artist, cb) => {
       var danceability = 0;
       var index = 0;
 
-      for (var i = 0; i < trackObjs.length; i++) {
+      for (var i = 0; i < trackObjs.length; i++) { //forEach
         if (trackObjs[i].danceability > danceability) {
           danceability = trackObjs[i].danceability;
           index = i;
         }
       }
 
+      //use lodash.get will never error, allows default, otherwise error will be innacurate in catch
+
       const trackObj = {
-       artistName: songStorage[trackObjs[index].id].artistName,
+       artistName: songStorage[trackObjs[index].id].artistName, //too deeply nested
        trackName: songStorage[trackObjs[index].id].trackName,
        id: trackObjs[index].id
       }
 
-      cb(trackObj, 200);
+      next(200, trackObj);
 
     })
     .catch(err => {
-      console.log('axios token err: ', err);
-      cb(null, 500);
+      console.log('axios token err: ', err); //use morgan here
+      next(500, null);
     })
 };
 
