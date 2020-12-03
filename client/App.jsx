@@ -125,7 +125,7 @@ class App extends React.Component {
   render() {
     return (
       <div style={wrapper}>
-        <h1 style={title}>Dance Break!</h1>
+        <h1 style={title} data-testid='title'>Dance Break!</h1>
         <div style={discoBall}></div>
         <div style={form}>
           <Form captureInput={this.onChange} search={this.search} />
