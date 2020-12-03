@@ -36,6 +36,7 @@ $ npm install
   CLIENTID='YOUR_CLIENT_ID'
   SECRET='YOUR_CLIENT_SECRET'
   PORT=3000
+  ENV='dev'
 
 # Run the app
 $ npm run build

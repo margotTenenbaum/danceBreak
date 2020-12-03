@@ -10,7 +10,7 @@ require('dotenv').config({
 
 const app = express();
 
-app.use(morgan('dev'));
+app.use(morgan(process.env.ENV || 'dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
@@ -23,6 +23,7 @@ app.post('/artist', (req, res) => {
 });
 
 app.post('/addSong', (req, res) => {
+  //add escaping here to protect db
   db.saveTrack(req.body, (status) => {
     res.status(status).send();
   })
